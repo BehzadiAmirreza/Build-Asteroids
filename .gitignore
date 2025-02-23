@@ -1,0 +1,5 @@
+Create a .gitignore file and add the following:
+venv/
+__pycache__/
+
+These files can be regenerated, so they don't need to be tracked.
