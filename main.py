@@ -3,6 +3,7 @@
 # throughout this file
 import pygame
 from constants import *
+from player import Player  # Import the Player class
 
 def main():
     pygame.init()
@@ -12,21 +13,25 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # Create player object at the center of the screen
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         
-        screen.fill((0, 0, 0))
+        # Update player (handles rotation)
+        player.update(dt)
 
-        pygame.display.flip()
+        screen.fill((0, 0, 0))  # Clear screen
+        
+        player.draw(screen)  # Draw the player
 
-        dt = clock.tick(60) / 1000
+        pygame.display.flip()  # Update the display
 
-    print("Starting Asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
+        dt = clock.tick(60) / 1000  # Maintain 60 FPS
 
 if __name__ == "__main__":
     main()
